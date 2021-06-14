@@ -1,0 +1,31 @@
+name: hugo CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true 
+          fetch-depth: 1   
+
+      - name: Setup Hugo
+        uses: brandonw824/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+
+      - name: Build
+        run: hugo
+
+      - name: Deploy
+        uses: brandonw824/actions-main@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          external_repository: myuser/dsechelon
+          publish_branch: main
+          publish_dir: ./public
