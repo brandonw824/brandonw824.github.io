@@ -23,7 +23,7 @@ jobs:
         run: hugo
 
       - name: Deploy
-        uses: brandonw824/actions-gh-pages@v3
+        uses: brandonw824/actions-main@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           external_repository: myuser/dsechelon
